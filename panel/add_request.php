@@ -9,4 +9,9 @@ $uploadfile = $uploaddir . basename($file['name']);
 
 move_uploaded_file($file['tmp_name'], $uploadfile);
 
-echo $name . ' : '. $description;
+header('Content-Type: application/json');
+echo json_encode([
+    'name' => $name,
+    'description' => $description,
+    'file' => $file
+]);
