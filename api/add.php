@@ -7,7 +7,9 @@ $file = $_FILES['file'];
 $uploaddir = './';
 $uploadfile = $uploaddir . basename($file['name']);
 
-move_uploaded_file($file['tmp_name'], $uploadfile);
+if (move_uploaded_file($file['tmp_name'], $uploadfile)) {
+    // success
+}
 
 header('Content-Type: application/json');
 echo json_encode([
