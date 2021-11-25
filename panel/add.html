@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj roślinkę</title>
+</head>
+<body>
+    <form action="/add_request.php" method="POST">
+        <table>
+            <tr>
+                <td>
+                    <label for="name">Nazwa</label>
+                </td>
+                <td>
+                    <input type="text" id="name" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="description">Opis</label>
+                </td>
+                <td>
+                    <textarea id="description" required></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="image">Zdjęcie</label>
+                </td>
+                <td>
+                    <input type="file" id="description" accept="image/*" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Dodaj">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
