@@ -15,6 +15,8 @@ if (!$id) {
     die();
 }
 
+// FILES
+
 $uploaddir = '../files/' . $id;
 
 if (!file_exists($uploaddir)) {
@@ -43,10 +45,34 @@ if (!is_dir($uploaddir)) {
 
 $files = array_map(fn($value) => $uploaddir . '/' . $value, array_values(array_diff(scandir($uploaddir), array('.', '..'))));
 
+// DATA FROM DB
+
+$db = new PDO('mysql:host=localhost;dbname=cfg', 'cfg', 'zaq1@WSX');
+$sql = $db->prepare("SELECT * FROM `plants` WHERE `id` = :id");
+$sql->execute([
+    'id' => $id
+]);
+$result = $sql->fetch(PDO::FETCH_ASSOC);
+
+if (!$result) {
+    http_response_code(404);
+    echo json_encode([
+        'error' => true,
+        'status' => 404,
+        'id' => $id,
+        'message' => "Can't find plant in database",
+        'dir' => $uploaddir,
+        'files' => $files,
+        'result' => $result
+    ]);
+    die();
+}
+
 echo json_encode([
     'error' => false,
     'status' => 200,
     'id' => $id,
     'message' => 'Success',
-    'files' => $files
+    'files' => $files,
+    'result' => $result
 ]);
