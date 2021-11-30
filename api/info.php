@@ -52,9 +52,9 @@ $sql = $db->prepare("SELECT * FROM `plants` WHERE `id` = :id");
 $sql->execute([
     'id' => $id
 ]);
-$result = $sql->fetch(PDO::FETCH_ASSOC);
+$plant = $sql->fetch(PDO::FETCH_ASSOC);
 
-if (!$result) {
+if (!$plant) {
     http_response_code(404);
     echo json_encode([
         'error' => true,
@@ -62,8 +62,7 @@ if (!$result) {
         'id' => $id,
         'message' => "Can't find plant in database",
         'dir' => $uploaddir,
-        'files' => $files,
-        'result' => $result
+        'files' => $files
     ]);
     die();
 }
@@ -74,5 +73,5 @@ echo json_encode([
     'id' => $id,
     'message' => 'Success',
     'files' => $files,
-    'result' => $result
+    'plant' => $plant
 ]);
