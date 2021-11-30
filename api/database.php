@@ -5,5 +5,7 @@ $dbname = 'cfg';
 $user = 'cfg';
 $password = 'zaq1@WSX';
 
+$tablename = 'plants';
+
 $db = new PDO('mysql:host=' . $host . ';dbname=' . $dbname, $user, $password);
 //$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

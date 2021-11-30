@@ -3,7 +3,7 @@
 header('Content-Type: application/json');
 
 include('./database.php');
-$sql = $db->prepare("SELECT * FROM `plants`");
+$sql = $db->prepare("SELECT * FROM `$tablename`");
 $sql->execute();
 $plants = $sql->fetchAll(PDO::FETCH_ASSOC);
 

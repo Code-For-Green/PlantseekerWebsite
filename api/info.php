@@ -48,7 +48,7 @@ $files = array_map(fn($value) => $uploaddir . '/' . $value, array_values(array_d
 // DATA FROM DB
 
 include('./database.php');
-$sql = $db->prepare("SELECT * FROM `plants` WHERE `id` = :id");
+$sql = $db->prepare("SELECT * FROM `$tablename` WHERE `id` = :id");
 $sql->execute([
     'id' => $id
 ]);

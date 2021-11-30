@@ -9,7 +9,7 @@ $file = $_FILES['file'];
 // DATA TO DB
 
 include('./database.php');
-$sql = $db->prepare("INSERT INTO `plants` (`name`, `description`) VALUES (:name, :description)");
+$sql = $db->prepare("INSERT INTO `$tablename` (`name`, `description`) VALUES (:name, :description)");
 $sql->execute([
     'name' => $name,
     'description' => $description
