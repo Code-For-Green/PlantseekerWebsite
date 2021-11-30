@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: application/json');
+
 $name = $_POST['name'];
 $description = $_POST['description'];
 $file = $_FILES['file'];
@@ -9,7 +11,13 @@ $uploaddir = '../files/' . $id;
 
 if (!file_exists($uploaddir)) {
     if (!mkdir($uploaddir, 0777, true)) {
-        die('Failed to create directories...');
+        http_response_code(500);
+        echo json_encode([
+            'error' => true,
+            'status' => 500,
+            'message' => 'Failed to create directories'
+        ]);
+        die();
     }
 }
 
@@ -17,14 +25,24 @@ $info = new SplFileInfo($file['name']);
 $uploadfile = $uploaddir . '/' . generateRandomString() . '.' . $info->getExtension();
 
 if (!move_uploaded_file($file['tmp_name'], $uploadfile)) {
-    die('Failed to save file...');
+    http_response_code(500);
+    echo json_encode([
+        'error' => true,
+        'status' => 500,
+        'message' => 'Failed to save file'
+    ]);
+    die();
 }
 
-header('Content-Type: application/json');
 echo json_encode([
-    'name' => $name,
-    'description' => $description,
-    'file' => $file
+    'error' => false,
+    'status' => 200,
+    'message' => 'Success',
+    'plant' => [
+        'name' => $name,
+        'description' => $description,
+        'file' => $file
+    ]
 ]);
 
 function generateRandomString($length = 10) {
