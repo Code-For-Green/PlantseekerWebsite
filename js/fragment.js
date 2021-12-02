@@ -11,6 +11,7 @@ function loadFragment(name = 'dashboard', onThen = () => {}) {
         .then((html) => {
             document.getElementById('main-content').innerHTML = html;
             updateCharts();
+            setPlants();
         })
         .then(onThen)
         .catch(console.error);
