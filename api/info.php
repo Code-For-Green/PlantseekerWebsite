@@ -17,33 +17,12 @@ if (!$id) {
 
 // FILES
 
+$files = [];
 $uploaddir = '../files/' . $id;
 
-if (!file_exists($uploaddir)) {
-    http_response_code(404);
-    echo json_encode([
-        'error' => true,
-        'status' => 404,
-        'id' => $id,
-        'message' => "Can't find directory",
-        'dir' => $uploaddir
-    ]);
-    die();
+if (file_exists($uploaddir) && is_dir($uploaddir)) {
+    $files = array_map(fn($value) => $uploaddir . '/' . $value, array_values(array_diff(scandir($uploaddir), array('.', '..'))));
 }
-
-if (!is_dir($uploaddir)) {
-    http_response_code(500);
-    echo json_encode([
-        'error' => true,
-        'status' => 500,
-        'id' => $id,
-        'message' => "Path is not directory",
-        'dir' => $uploaddir
-    ]);
-    die();
-}
-
-$files = array_map(fn($value) => $uploaddir . '/' . $value, array_values(array_diff(scandir($uploaddir), array('.', '..'))));
 
 // DATA FROM DB
 
@@ -75,3 +54,20 @@ echo json_encode([
     'files' => $files,
     'plant' => $plant
 ]);
+
+/*
+{
+    "error": false,
+    "status": 200,
+    "id": "",
+    "message": "Success",
+    "files": [
+        ""
+    ],
+    "plant": {
+        "id": 3,
+        "name": "",
+        "description": ""
+    }
+}
+*/
