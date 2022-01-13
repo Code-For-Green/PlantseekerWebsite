@@ -13,3 +13,14 @@ echo json_encode([
     'message' => 'Success',
     'plants' => $plants
 ]);
+
+/* Struktura:
+[
+    {
+        "name": "",
+        "description": "",
+        "file": "http://...", <-- image
+    },
+    ...
+]
+*/
