@@ -54,3 +54,20 @@ echo json_encode([
     'files' => $files,
     'plant' => $plant
 ]);
+
+/*
+{
+    "error": false,
+    "status": 200,
+    "id": "",
+    "message": "Success",
+    "files": [
+        ""
+    ],
+    "plant": {
+        "id": 3,
+        "name": "",
+        "description": ""
+    }
+}
+*/
