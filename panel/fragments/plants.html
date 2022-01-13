@@ -15,22 +15,7 @@
                         <th>Zdjęcia</th>
                     </tr>
                 </thead>
-                <tbody id="table-plants">
-                </tbody>
-                <script type="text/javascript">
-                    const json = getPlants();
-                    const tbody = document.getElementById("table-plants");
-                    let codeInner = "";
-
-                    // To jest obrzydliwe... ale czas to pieniądz :D
-                    json.forEach(element => codeInner += "<td>\n"
-                        + "<td>" + element["name"] + "</td>\n"
-                        + "<td>" + element["description"] + "</td>\n"
-                        + "<td><a href=\"" + element["file"] + "\"><img width=\"100%\" src=\"../../res/link_icon.png\"></a></td>\n"
-                        + "</tr>\n"
-                    );
-                    tbody.innerHTML = codeInner;
-                </script>
+                <tbody id="table-plants"></tbody>
             </table>
         </div>
     </div>
